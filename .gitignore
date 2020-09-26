@@ -1,6 +1,5 @@
 .idea
 pao.iml
 target
-core/core.iml
-spring/spring.iml
-quarkus/quarkus.iml
+*/*.iml
+*/target
