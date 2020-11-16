@@ -1,5 +1,6 @@
-package io.github.whalenut.notes;
+package io.github.whalenut.notes.core;
 
+import io.github.whalenut.notes.core.Note;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

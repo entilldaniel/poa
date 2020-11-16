@@ -1,5 +1,9 @@
-package io.github.whalenut.notes;
+package io.github.whalenut.notes.core;
 
+import io.github.whalenut.notes.core.Note;
+import io.github.whalenut.notes.core.NoteRepository;
+import io.github.whalenut.notes.core.NoteService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +50,7 @@ class NoteServiceTest {
 
         var result = noteService.addTags(original.getId(), newTags);
 
-        assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
     @Test

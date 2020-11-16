@@ -1,4 +1,4 @@
-package io.github.whalenut.notes;
+package io.github.whalenut.notes.core;
 
 import java.util.List;
 import java.util.Set;
