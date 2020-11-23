@@ -1,6 +1,7 @@
 package io.github.whalenut.notes.cli;
 
-import io.github.whalenut.notes.cli.config.DaggerCliInterfaceFactory;
+import io.github.whalenut.notes.cli.config.CommandFactory;
+import io.github.whalenut.notes.cli.config.DaggerCommandFactory;
 import org.jline.console.SystemRegistry;
 import org.jline.console.impl.Builtins;
 import org.jline.console.impl.SystemRegistryImpl;
@@ -31,13 +32,13 @@ public class Application {
     }
 
     public Application(String[] args) {
-        CliInterface cliInterface = DaggerCliInterfaceFactory.create().cliInterface();
+        CommandFactory commandFactory = DaggerCommandFactory.create();
         Parser parser = new DefaultParser();
         Path workDir = Paths.get(System.getProperty("user.dir"));
 
         Builtins builtins = new Builtins(Collections.emptySet(), workDir, null, null);
 
-        CommandLine cmd = new CommandLine(cliInterface);
+        CommandLine cmd = createCommands(commandFactory);
         PicocliCommands commands = new PicocliCommands(workDir, cmd);
         try (Terminal terminal = TerminalBuilder.builder().build()) {
             SystemRegistry systemRegistry = new SystemRegistryImpl(parser, terminal, () -> workDir, null);
@@ -69,5 +70,14 @@ public class Application {
         } catch (IOException e) {
             System.out.println("bummer...");
         }
+    }
+
+    private CommandLine createCommands(CommandFactory commandFactory) {
+        CommandLine parentCommand = new CommandLine(commandFactory.parentCommand());
+        parentCommand.addSubcommand(commandFactory.listCommand());
+
+
+
+        return parentCommand;
     }
 }
