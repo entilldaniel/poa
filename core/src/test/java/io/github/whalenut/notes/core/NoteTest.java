@@ -15,17 +15,18 @@ class NoteTest {
 
     @Test
     void shouldContainAllFields() {
-        Note note = new Note("Test", Collections.emptySet());
+        Note note = new Note("Heading", "Note", Collections.emptySet());
 
         assertNotNull(note.getId());
-        assertEquals(note.getNote(), "Test");
+        assertEquals(note.getHeading(), "Heading");
+        assertEquals(note.getNote(), "Note");
         assertTrue(note.getTags().isEmpty());
         assertTrue(note.getCreated().isBefore(LocalDateTime.now(ZoneOffset.UTC)));
     }
 
     @Test
     void shouldCreateNewNoteWithAddedTags() {
-        Note note = new Note("Test", new HashSet<>());
+        Note note = new Note("Heading", "Note", new HashSet<>());
         var tags = new HashSet<>(Set.of("foo", "bar"));
         Note updated = new Note(note, tags);
 

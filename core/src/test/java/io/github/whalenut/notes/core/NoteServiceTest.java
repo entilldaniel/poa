@@ -76,7 +76,7 @@ class NoteServiceTest {
 
 
     private Note testNote() {
-        return new Note("Test note", Collections.emptySet());
+        return new Note("Test Heading", "Test note", Collections.emptySet());
     }
 
 
