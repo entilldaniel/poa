@@ -5,8 +5,8 @@ import io.github.whalenut.notes.core.Note;
 import io.github.whalenut.notes.core.NoteRepository;
 
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,7 +21,8 @@ public class InMemoryNotesRepository implements NoteRepository {
 
     @Override
     public boolean save(Note note) {
-        return false;
+        notes.put(UUID.randomUUID(), note);
+        return true;
     }
 
     @Override
@@ -40,7 +41,7 @@ public class InMemoryNotesRepository implements NoteRepository {
     }
 
     @Override
-    public List<Note> getAll() {
-        return null;
+    public Collection<Note> getAll() {
+        return notes.values();
     }
 }

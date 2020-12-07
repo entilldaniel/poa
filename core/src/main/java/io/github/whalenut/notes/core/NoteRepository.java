@@ -1,6 +1,6 @@
 package io.github.whalenut.notes.core;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 public interface NoteRepository {
@@ -12,5 +12,5 @@ public interface NoteRepository {
 
     boolean update(Note note);
 
-    List<Note> getAll();
+    Collection<Note> getAll();
 }

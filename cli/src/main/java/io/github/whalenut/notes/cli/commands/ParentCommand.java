@@ -9,6 +9,7 @@ import javax.inject.Inject;
         footer = {"", "Press Ctrl-D to exit."})
 public class ParentCommand implements Runnable {
 
+    @Inject
     public ParentCommand() {
     }
 

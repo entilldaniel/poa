@@ -1,7 +1,7 @@
 package io.github.whalenut.notes.cli.commands;
 
 
-import io.github.whalenut.notes.core.NoteRepository;
+import io.github.whalenut.notes.core.NoteService;
 import picocli.CommandLine;
 
 import javax.inject.Inject;
@@ -10,17 +10,18 @@ import javax.inject.Inject;
         description = "Lists all the notes")
 public class ListCommand implements Runnable {
 
-    private final NoteRepository noteRepository;
+    private final NoteService noteService;
 
     @CommandLine.ParentCommand
     ParentCommand parent;
 
     @Inject
-    public ListCommand(NoteRepository noteRepository) {
-        this.noteRepository = noteRepository;
+    public ListCommand(NoteService noteService) {
+        this.noteService = noteService;
     }
 
     public void run() {
-        System.out.println("Listing all the notes");
+        noteService.getAllNotes().stream()
+                .forEach(n -> System.out.println(n.getNote()));
     }
 }

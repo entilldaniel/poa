@@ -1,5 +1,6 @@
 package io.github.whalenut.notes.core;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class NoteService {
     }
 
     public List<Note> getAllNotes() {
-        return noteRepository.getAll();
+        return new ArrayList<>(noteRepository.getAll());
     }
 
     public Note delete(UUID id) {

@@ -1,12 +1,10 @@
 package io.github.whalenut.notes.core;
 
-import io.github.whalenut.notes.core.Note;
-import io.github.whalenut.notes.core.NoteRepository;
-import io.github.whalenut.notes.core.NoteService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -72,7 +70,7 @@ class NoteServiceTest {
 
         when(noteRepository.getAll()).thenReturn(notes);
 
-        List<Note> result = noteService.getAllNotes();
+        Collection<Note> result = noteService.getAllNotes();
         assertIterableEquals(notes, result);
     }
 
