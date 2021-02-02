@@ -6,6 +6,7 @@ import org.jline.reader.EndOfFileException;
 import org.jline.reader.LineReader;
 import org.jline.reader.MaskingCallback;
 import org.jline.reader.UserInterruptException;
+import picocli.shell.jline3.PicocliCommands;
 
 import javax.inject.Inject;
 
@@ -18,7 +19,11 @@ public class CommandInterface {
     private final LineReader reader;
 
     @Inject
-    public CommandInterface(SystemRegistry systemRegistry, LineReader reader, Builtins builtins) {
+    public CommandInterface(SystemRegistry systemRegistry,
+                            LineReader reader,
+                            Builtins builtins,
+                            PicocliCommands commands) {
+        systemRegistry.setCommandRegistries(builtins, commands);
         this.systemRegistry = systemRegistry;
         this.reader = reader;
 

@@ -33,10 +33,9 @@ public abstract class CliModule {
     public static SystemRegistry systemRegistry(Parser parser,
                                                 Terminal terminal,
                                                 Path workDir,
-                                                Builtins builtins,
-                                                PicocliCommands picocliCommands) {
+                                                Builtins builtins) {
         SystemRegistry systemRegistry = new SystemRegistryImpl(parser, terminal, () -> workDir, null);
-        systemRegistry.setCommandRegistries(builtins, picocliCommands);
+        systemRegistry.setCommandRegistries(builtins);
         return systemRegistry;
     }
 
@@ -55,8 +54,12 @@ public abstract class CliModule {
 
     @Provides
     @Singleton
-    public static Path workDir() {
-        return Paths.get(System.getProperty("user.dir"));
+    public static Terminal terminal() {
+        try {
+            return TerminalBuilder.builder().build();
+        } catch (IOException e) {
+            throw new RuntimeException("Could not start.", e);
+        }
     }
 
     @Provides
@@ -67,13 +70,10 @@ public abstract class CliModule {
 
     @Provides
     @Singleton
-    public static Terminal terminal() {
-        try {
-            return TerminalBuilder.builder().build();
-        } catch (IOException e) {
-            throw new RuntimeException("Could not start.", e);
-        }
+    public static Path workDir() {
+        return Paths.get(System.getProperty("user.dir"));
     }
+
 
     @Provides
     @Singleton

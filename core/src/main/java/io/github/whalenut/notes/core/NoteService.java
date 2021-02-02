@@ -30,4 +30,8 @@ public class NoteService {
     public Note delete(UUID id) {
         return noteRepository.delete(id);
     }
+
+    public Set<Note> getAllWithTag(String tag) {
+        return noteRepository.getNotesWithTag(tag);
+    }
 }

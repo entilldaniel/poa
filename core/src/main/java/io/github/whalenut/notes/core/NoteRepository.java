@@ -1,6 +1,7 @@
 package io.github.whalenut.notes.core;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 public interface NoteRepository {
@@ -13,4 +14,6 @@ public interface NoteRepository {
     boolean update(Note note);
 
     Collection<Note> getAll();
+
+    Set<Note> getNotesWithTag(String tag);
 }

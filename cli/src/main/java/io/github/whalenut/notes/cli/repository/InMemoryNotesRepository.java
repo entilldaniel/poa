@@ -8,7 +8,10 @@ import javax.inject.Inject;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+
+import static java.util.stream.Collectors.toSet;
 
 public class InMemoryNotesRepository implements NoteRepository {
 
@@ -44,4 +47,12 @@ public class InMemoryNotesRepository implements NoteRepository {
     public Collection<Note> getAll() {
         return notes.values();
     }
+
+    @Override
+    public Set<Note> getNotesWithTag(String tag) {
+        return notes.values().stream()
+                .filter(n -> n.getTags().contains(tag))
+                .collect(toSet());
+    }
+
 }
