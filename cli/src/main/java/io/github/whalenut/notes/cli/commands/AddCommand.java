@@ -28,12 +28,12 @@ public class AddCommand implements Runnable {
     public void run() {
         lineReader.printAbove("What heading?");
         String heading = lineReader.readLine();
-        lineReader.printAbove("What is your note?");
+        lineReader.printAbove("What is your note? Finish with # on a separate line");
         StringBuilder sb = new StringBuilder();
         String contents = "";
         while (true) {
             contents = lineReader.readLine();
-            if (contents.endsWith("#")) {
+            if (contents.equals("#")) {
                 contents = contents.substring(0, contents.length() - 1);
                 sb.append(contents)
                         .append(System.lineSeparator());

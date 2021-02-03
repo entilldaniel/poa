@@ -2,8 +2,8 @@ package io.github.whalenut.notes.cli.config;
 
 
 import dagger.Component;
-import dagger.Provides;
 import io.github.whalenut.notes.cli.commands.AddCommand;
+import io.github.whalenut.notes.cli.commands.GetCommand;
 import io.github.whalenut.notes.cli.commands.ListCommand;
 import io.github.whalenut.notes.cli.commands.ListFromTagsCommand;
 import io.github.whalenut.notes.cli.commands.ParentCommand;
@@ -22,4 +22,5 @@ public interface CommandFactory {
     AddCommand addCommand();
     TagsCommand tagsCommand();
     ListFromTagsCommand listFromTagsCommand();
+    GetCommand getCommand();
 }

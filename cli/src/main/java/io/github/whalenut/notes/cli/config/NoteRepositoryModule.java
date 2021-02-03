@@ -17,10 +17,10 @@ public abstract class NoteRepositoryModule {
     @Singleton
     public static NoteRepository noteRepository() {
         NoteRepository repository = new InMemoryNotesRepository();
-        repository.save(new Note("Heading", "Test", Set.of("foo", "bar", "baz")));
-        repository.save(new Note("Heading", "Test", Set.of("fizz")));
-        repository.save(new Note("Heading", "Test", Set.of("buzz")));
-        repository.save(new Note("Heading", "Test", Set.of("fizzbuzz")));
+        repository.save(new Note("Heading 1", "Test", Set.of("foo", "bar", "baz")));
+        repository.save(new Note("Heading 2", "Test", Set.of("fizz")));
+        repository.save(new Note("Heading 3", "Test", Set.of("buzz")));
+        repository.save(new Note("Heading 4", "Test", Set.of("fizzbuzz", "bar")));
 
         return repository;
     }

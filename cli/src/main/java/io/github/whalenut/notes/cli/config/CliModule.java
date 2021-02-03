@@ -3,6 +3,7 @@ package io.github.whalenut.notes.cli.config;
 import dagger.Module;
 import dagger.Provides;
 import io.github.whalenut.notes.cli.commands.AddCommand;
+import io.github.whalenut.notes.cli.commands.GetCommand;
 import io.github.whalenut.notes.cli.commands.ListCommand;
 import io.github.whalenut.notes.cli.commands.ListFromTagsCommand;
 import io.github.whalenut.notes.cli.commands.ParentCommand;
@@ -84,16 +85,18 @@ public abstract class CliModule {
     @Provides
     @Singleton
     public static PicocliCommands picocliCommands(Path workDir,
-                                            ParentCommand parentCommand,
-                                            ListCommand listCommand,
-                                            AddCommand addCommand,
-                                            TagsCommand tagsCommand,
-                                            ListFromTagsCommand listFromTagsCommand) {
+                                                  ParentCommand parentCommand,
+                                                  ListCommand listCommand,
+                                                  AddCommand addCommand,
+                                                  TagsCommand tagsCommand,
+                                                  ListFromTagsCommand listFromTagsCommand,
+                                                  GetCommand getCommand) {
         CommandLine commandLine = new CommandLine(parentCommand);
         commandLine.addSubcommand(listCommand);
         commandLine.addSubcommand(addCommand);
         commandLine.addSubcommand(tagsCommand);
         commandLine.addSubcommand(listFromTagsCommand);
+        commandLine.addSubcommand(getCommand);
 
         return new PicocliCommands(workDir, commandLine);
     }

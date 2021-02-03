@@ -30,17 +30,17 @@ public class InMemoryNotesRepository implements NoteRepository {
 
     @Override
     public Note find(UUID id) {
-        return null;
+        return notes.get(id);
     }
 
     @Override
     public Note delete(UUID id) {
-        return null;
+        return notes.remove(id);
     }
 
     @Override
     public boolean update(Note note) {
-        return false;
+        return notes.computeIfPresent(note.getId(), (a, b) -> note) != null;
     }
 
     @Override

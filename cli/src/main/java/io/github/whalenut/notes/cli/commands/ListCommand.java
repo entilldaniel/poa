@@ -1,6 +1,7 @@
 package io.github.whalenut.notes.cli.commands;
 
 
+import io.github.whalenut.notes.core.Note;
 import io.github.whalenut.notes.core.NoteService;
 import picocli.CommandLine;
 
@@ -22,6 +23,10 @@ public class ListCommand implements Runnable {
 
     public void run() {
         noteService.getAllNotes().stream()
-                .forEach(n -> System.out.println(n.getNote()));
+                .forEach(this::printNoteInfo);
+    }
+
+    private void printNoteInfo(Note note) {
+        System.out.println(note.getHeading());
     }
 }
