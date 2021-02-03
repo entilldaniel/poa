@@ -2,6 +2,7 @@ package io.github.whalenut.notes.core;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ public class Note {
         this.tags = tags;
     }
 
+    // Copy constructor in order to add new tags.
     public Note(Note note, Set<String> tags) {
         this.id = note.getId();
         this.created = note.getCreated();
@@ -46,6 +48,6 @@ public class Note {
     }
 
     public Set<String> getTags() {
-        return tags;
+        return Collections.unmodifiableSet(tags);
     }
 }
