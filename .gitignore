@@ -4,3 +4,9 @@ target
 */*.iml
 */target
 */dependency-reduced-pom.xml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
